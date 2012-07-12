@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SqlDataClasses</name>
+    </assembly>
+    <members>
+        <member name="T:SqlDataClasses.Paging.PostgreSqlPagingStrategy">
+            <summary>
+            Si solo todas fueran tan facil como esto...
+            </summary>
+        </member>
+        <member name="T:SqlDataClasses.Paging.GenericPagingStrategy">
+            <summary>
+            Estrategia de paginación genérica que solo mueve un datareader hasta el offset de la página
+            </summary>
+        </member>
+        <member name="T:SqlDataClasses.IPagingStrategy">
+            <summary>
+            Estrategia de paginacion para consultas sql
+            </summary>
+        </member>
+        <member name="M:SqlDataClasses.IPagingStrategy.TransformQuery(System.String,SqlDataClasses.IPage)">
+            <summary>
+            Aplica transformaciones al sql de la consulta para que aplique paginación automatica
+            </summary>
+            <param name="sql">Consulta SQL</param>
+            <param name="page">Definicion de pagina</param>
+            <returns>sql transformado</returns>
+        </member>
+        <member name="M:SqlDataClasses.IPagingStrategy.ApplyOffset(System.Data.IDataReader,SqlDataClasses.IPage)">
+            <summary>
+            Mueve el datareader el número especificado por el Offset de la página
+            </summary>
+            <param name="reader"></param>
+            <param name="page">Definicion de pagina</param>
+            <returns>numero de movimientos realizados</returns>
+        </member>
+        <member name="P:SqlDataClasses.IPagingStrategy.MoveOffset">
+            <summary>
+            Identifica si la estrategia requiere que un datareader mueva la posición hasta el offset
+            para ejecutar la paginación
+            </summary>
+        </member>
+        <member name="P:SqlDataClasses.IPagingStrategy.ColumnsToExclude">
+            <summary>
+            Lista de columnas que se deben excluir de los resultados. Por ejemplo columnas auxiliares
+            resultado del proceso de paginacion
+            </summary>
+        </member>
+        <member name="P:SqlDataClasses.IPagingStrategy.OrderColumnHint">
+            <summary>
+            Columna a tomar en cuenta para ordenar la consulta si no se puso order by en el sql.
+            Por lo general debe ser alguna de las claves primarias de las tablas de la consulta como 'id'.
+            Algunas estrategias requieren este campo.
+            </summary>
+        </member>
+        <member name="T:SqlDataClasses.Datasets.DataTableHelper">
+            <summary>
+            Clase utilitaria que básicamente se usa para llenar datatables con diferentes parámetros
+            </summary>
+        </member>
+        <member name="T:SqlDataClasses.PaginaImpl">
+            <summary>
+            Representa la información de una "página" de una lista en general. Es la implementación por defecto
+            </summary>
+        </member>
+        <member name="T:SqlDataClasses.IPage">
+            <summary>
+            Se encarga de la gestión de la información de página para consultas
+            paginadas. Se usa para intercambiar información de página entre la capa
+            de persistencia y la interfaz de usuario que sirve para representar las páginas
+            </summary>
+        </member>
+        <member name="T:SqlDataClasses.Paging.MySqlPagingStrategy">
+            <summary>
+            Si solo todas fueran tan facil como esto...
+            </summary>
+        </member>
+        <member name="T:SqlDataClasses.Paging.MsSql2005PagingStrategy">
+            <summary>
+            Parecido a <see cref="T:SqlDataClasses.Paging.OraclePagingStrategy"/>, tambien transforma el sql a ua consulta
+            especial que hace paginación. No requiere de order by implicitamente pero genera un campo extra
+            _RowNumber que hay que excluir del resultado
+            </summary>
+        </member>
+        <member name="T:SqlDataClasses.Paging.OraclePagingStrategy">
+            <summary>
+            Esta tambien es sacada de algunas páginas web donde dice como, tal vez no funcione con algunas
+            versiones de Oracle, que se yo, probar...
+            </summary>
+        </member>
+        <member name="T:SqlDataClasses.Paging.MsSql2000PagingStrategy">
+            <summary>
+            Esta estrategia de paginacion toma una consulta tipo select y a punta de expresiones regulares
+            la transforma en una serie de selects con top invirtiendo el orden de las columnas para
+            sacar solo el conjunto deseado. Truco sucio pero es la única forma de hacer esto con sql server
+            2000 antes de entrar en stored procedures. 
+            El problema es que la consulta original necesita de ley tener un order by, si no lo tiene se utiliza
+            OrderColumnHint, y si esto no hay ahi si chao.
+            Rayadazo...
+            
+            </summary>
+        </member>
+        <member name="T:SqlDataClasses.Datasets.DataSetHelper">
+            <summary>
+            sacado de http://support.microsoft.com/default.aspx?scid=kb;en-us;326145
+            Sirve supuestamente para aplicar filtros de tipo group dentro de datasets y datatables
+            yo me quedo con un hashtable
+            </summary>
+        </member>
+        <member name="T:SqlDataClasses.SqlHelper">
+            <summary>
+            Clase utilitaria que sirve para realizar consultas directas a la base de datos utilizando
+            SQL. Similar al Enterprise Data Block de Enterprise Library pero mucho más simple.
+            Ahora acepta paginacion tambien. Trataja con DataReaders y DataTables.
+            NOTA: No trabaja con DataSets ya que no hay dataadapter genericos
+            </summary>
+        </member>
+        <member name="P:SqlDataClasses.SqlHelper.TransactionAdaptor">
+            <summary>
+            <see cref="T:SqlDataClasses.ITransactionAdaptor"/>
+            </summary>
+        </member>
+        <member name="P:SqlDataClasses.SqlHelper.PagingStrategy">
+            <summary>
+            <see cref="T:SqlDataClasses.IPagingStrategy"/>
+            </summary>
+        </member>
+        <member name="T:SqlDataClasses.DefaultTransactionAdaptor">
+            <summary>
+            Encapsula una transacción común y corriente de Ado.net para su uso
+            con el helper de sql
+            </summary>
+        </member>
+        <member name="T:SqlDataClasses.ITransactionAdaptor">
+            <summary>
+            Funciona con el <see cref="T:SqlDataClasses.SqlHelper"/> para proporcionar una transacción en la cual
+            los comandos pueden enlistarse
+            </summary>
+        </member>
+        <member name="M:SqlDataClasses.CommandTextUtils.CreateCountQuery(System.String,System.Boolean)">
+            <summary>
+            Modifica una consulta para hacerla de tipo select count(*) utilizando expresiones regulares
+            </summary>
+            <param name="query">Texto de la consulta</param>
+            <param name="isHql">Si es verdadero incluye l texto para los 'fetch'</param>
+            <returns>texto procesado</returns>
+        </member>
+        <member name="M:SqlDataClasses.CommandTextUtils.CambiarCaracterParametros(System.String,System.Char,System.Char)">
+            <summary>
+            Cambia los caracteres de los parametros de la consulta de un tipo a otro,
+            por ejemplo en ADO.NET es @parametro lo cambia a :parametro para NHibernate
+            o lo que sea
+            </summary>
+            <param name="query">Texto de la consulta</param>
+            <param name="oldChar">caracter a buscar</param>
+            <param name="newChar">caracter a reemplazar</param>
+            <returns>texto procesado</returns>
+        </member>
+        <member name="M:SqlDataClasses.CommandTextUtils.RemoveTableAliases(System.String)">
+            <summary>
+            Usando una expresión regular remueve los alias de tabla de una serie de campos.
+            a.campo, b.otro_campo => campo, otro_campo
+            Usar con cuidado
+            </summary>
+            <param name="campos">campos de una consulta</param>
+            <returns>campos sin alias</returns>
+        </member>
+        <member name="M:SqlDataClasses.CommandTextUtils.SwitchOrder(System.String)">
+            <summary>
+            Cambia el orden de los campos de la clausula order by, asi asc se vuelve desc y visceversa
+            Si el campo no tiene orden es asc entonces se vuelve desc.
+            </summary>
+            <param name="orderByFields"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

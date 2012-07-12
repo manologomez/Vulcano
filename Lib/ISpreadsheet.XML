@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ISpreadsheet</name>
+    </assembly>
+    <members>
+        <member name="T:ISpreadsheet.Implementation.NPOI.NpoiWorkbook">
+            <summary>
+            Workbook implementation for NPOI (Excel 2003 binary format)
+            </summary>
+        </member>
+        <member name="T:ISpreadsheet.IWorkbook">
+            <summary>
+            Abstract workbook
+            </summary>
+        </member>
+        <member name="M:ISpreadsheet.IWorkbook.GetSheet(System.String)">
+            <summary>
+            Get sheet by name
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ISpreadsheet.IWorkbook.GetSheet(System.Int32)">
+            <summary>
+            Get sheet by number (starting in 1)
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ISpreadsheet.IWorkbook.CreateSheet(System.String)">
+            <summary>
+            Creates a new sheet with the given name
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ISpreadsheet.IWorkbook.SaveToFile(System.String,System.String)">
+            <summary>
+            Saves the contents of the workbook to a file with an optional password
+            </summary>
+            <param name="file">Path of the file to save</param>
+            <param name="password"></param>
+        </member>
+        <member name="M:ISpreadsheet.IWorkbook.SaveToStream(System.IO.Stream,System.String)">
+            <summary>
+            Saves the contents of the workbook to a stream with an optional password
+            </summary>
+            <param name="stream"></param>
+            <param name="password"></param>
+        </member>
+        <member name="P:ISpreadsheet.IWorkbook.Sheets">
+            <summary>
+            Available sheets
+            </summary>
+        </member>
+        <member name="T:ISpreadsheet.IWorksheet">
+            <summary>
+            Abstract worksheet
+            </summary>
+        </member>
+        <member name="M:ISpreadsheet.IWorksheet.GetCell(System.String)">
+            <summary>
+            Get value of a cell using range address notation: A:1, B:5, etc.
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ISpreadsheet.IWorksheet.GetCell(System.Int32,System.Int32)">
+            <summary>
+            Value of a cell using column and row number, 1 based indexed
+            </summary>
+            <param name="col"></param>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ISpreadsheet.IWorksheet.GetCell(System.String,System.Int32)">
+            <summary>
+            Value of a cell using column and row address (A,B...) , 1 based indexed
+            </summary>
+            <param name="col"></param>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ISpreadsheet.IWorksheet.GetRow(System.Int32)">
+            <summary>
+            Object array from a row
+            </summary>
+            <param name="num">Row number (1 based index)</param>
+            <returns></returns>
+        </member>
+        <member name="M:ISpreadsheet.IWorksheet.GetRowMap(System.Int32)">
+            <summary>
+            Row expressed as a dictionary in which keys are row letters
+            </summary>
+            <param name="num">Row number (1 based index)</param>
+            <returns></returns>
+        </member>
+        <member name="M:ISpreadsheet.IWorksheet.GetString(System.String)">
+            <summary>
+            Get the string value of a cell using range address notation
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ISpreadsheet.IWorksheet.GetString(System.Object,System.Int32)">
+            <summary>
+            Get the string value of a cell using either column number or letter and a row number
+            </summary>
+            <param name="col"></param>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ISpreadsheet.IWorksheet.SetValue(System.String,System.Object)">
+            <summary>
+            Sets the value of a cell by address
+            </summary>
+            <param name="address"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ISpreadsheet.IWorksheet.SetValue(System.Int32,System.Int32,System.Object)">
+            <summary>
+            Sets the value of a cell by indexes
+            </summary>
+            <param name="col"></param>
+            <param name="row"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ISpreadsheet.IWorksheet.Name">
+            <summary>
+            Name of the sheet
+            </summary>
+        </member>
+        <member name="P:ISpreadsheet.IWorksheet.NumColumns">
+            <summary>
+            Total number of columns in the sheet
+            </summary>
+        </member>
+        <member name="P:ISpreadsheet.IWorksheet.NumRows">
+            <summary>
+            Total number of rows in the sheet
+            </summary>
+        </member>
+        <member name="T:ISpreadsheet.WorksheetExtensions">
+            <summary>
+            Useful extension methods to obtain different datatypes from cell values
+            </summary>
+        </member>
+        <member name="M:ISpreadsheet.WorksheetExtensions.TryGetDateTime(System.String)">
+            <summary>
+            Attempts to obtain a DateTime from a string using some well known formats
+            TODO: Custom formats and culture
+            </summary>
+            <param name="dateString"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ISpreadsheet.Implementation.EPPlus.EPPlusWorkbook">
+            <summary>
+            Workbook implementation for Epplus (Excel 2077+, OpenDocument)
+            </summary>
+        </member>
+        <member name="M:ISpreadsheet.Utils.CellUtils.TextLinesFromRange(ISpreadsheet.IWorksheet,System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Dado un rango de lineas (inicio, fin) retorna una lista de cadenas de cada linea utilizando un separador
+            y con una pista de parada si se encuentra la cadena
+            </summary>
+            <param name="sheet">Hoja de cálculo</param>
+            <param name="start">Linea de inicio</param>
+            <param name="end">Línea fin</param>
+            <param name="separator">Cadena para separar entre celdas</param>
+            <param name="stophint">Texto de parada si se encuentra en la primera celda</param>
+            <returns></returns>
+        </member>
+        <member name="T:ISpreadsheet.SpreadsheetFactory">
+            <summary>
+            Workbook factory that returns an IWorkbook from either a file name or a stream
+            </summary>
+        </member>
+        <member name="M:ISpreadsheet.SpreadsheetFactory.GetWorkbook(System.String)">
+            <summary>
+            Returns an IWorkbook from a physical file path
+            </summary>
+            <param name="filepath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ISpreadsheet.SpreadsheetFactory.GetWorkbook(System.IO.Stream,System.String)">
+            <summary>
+            Returns an IWorkbook from a stream, providing the logical extension for getting the right implementation
+            </summary>
+            <param name="stream"></param>
+            <param name="extension"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

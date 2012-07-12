@@ -1,0 +1,22 @@
+﻿<?xml version="1.0"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Vulcano.Engine"
+		namespace="Vulcano.Engine.Dominio" >
+
+	<class name ="Detalle_res" table="detalle_res">
+		<id name="Id">
+			<generator class="guid.comb" />
+		</id>
+
+		<property name="Id_componente"/>
+		<property name="Es_base"/>
+		<property name="Contexto" />
+		<property name="Variable" />
+		<property name="Valor" />
+		<property name="Valor_numerico" />
+		<property name="Calculado" />
+		
+		<many-to-one name="Padre" column="id_padre" lazy="proxy" not-null="true"/>
+		
+	</class>
+
+</hibernate-mapping>

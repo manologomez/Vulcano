@@ -1,0 +1,611 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UtilidadesGenerales</name>
+    </assembly>
+    <members>
+        <member name="T:UtilidadesGenerales.TiempoUtil">
+            <summary>
+            Clase para tratabar con valores de tiempo, principalmente desde cadenas
+            </summary>
+        </member>
+        <member name="F:UtilidadesGenerales.TiempoUtil.Culture">
+            <summary>
+            Cultura para el procesamiento de números
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.TiempoUtil.ObtenerTiempo(System.Object)">
+            <summary>
+            Trata de extraer un valor de tiempo desde cualquier objeto
+            </summary>
+            <param name="valor"></param>
+            <returns>Tiempo</returns>
+        </member>
+        <member name="M:UtilidadesGenerales.TiempoUtil.FormatTimespan(System.Nullable{System.TimeSpan})">
+            <summary>
+            Formatea un TimeSpan en formato HH:mm:ss
+            </summary>
+            <param name="ts"></param>
+            <returns>Cadena formateada</returns>
+        </member>
+        <member name="M:UtilidadesGenerales.TiempoUtil.ObtenerTiempoString(System.String)">
+            <summary>
+            Trata de extraer un valor de tiempo desde una cadena. Los formatos aceptador son <br/>
+            HH:mm:ss, HH:mm, '##h ##m', '##h'
+            </summary>
+            <param name="tiempo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.CompareUtil.FindChanges``1(``0,``0,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Compara dos objetos y devuelve una lista de diferencias de campos entre ambos
+            excluyendo las colecciones
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="original"></param>
+            <param name="copy"></param>
+            <param name="include"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilidadesGenerales.FieldDifference">
+            <summary>
+            Representa una diferencia entre propiedades de un objeto
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.ReflectionUtil.GetComplexProperty(System.Object,System.String)">
+            <summary>
+            Devuelve el valor de una propiedad compleja utilizando un path tipo emp.Novedad.Nombre
+            Tal vez sería bueno ver si se puede hacer con linq dinámico.
+            </summary>
+            <param name="context">Objeto del que se extrae la propiedad</param>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.ReflectionUtil.Dict(System.Object,System.Boolean)">
+            <summary>
+            Extrae las propiedades publicas de un objeto como un diccionario
+            </summary>
+            <param name="obj">Sujeto</param>
+            <param name="includeCollections">Si se deben incluir colecciones, false por defecto</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilidadesGenerales.MedidaUnidad">
+            <summary>
+            Simple estructura que representa un numero con sus unidades
+            </summary>
+        </member>
+        <member name="P:UtilidadesGenerales.MedidaUnidad.Medida">
+            <summary>
+            Número
+            </summary>
+        </member>
+        <member name="P:UtilidadesGenerales.MedidaUnidad.Unidad">
+            <summary>
+            Texto de las unidades
+            </summary>
+        </member>
+        <member name="P:UtilidadesGenerales.MedidaUnidad.Adicional">
+            <summary>
+            Representa el prefijo u otro dato de la medicion, p.ej '>'
+            No usado todavía
+            </summary>
+        </member>
+        <member name="T:UtilidadesGenerales.MedidasUtil">
+            <summary>
+            Sirve para extraer valores numéricos que se vean como mediciones científicas desde textos
+            </summary>
+        </member>
+        <member name="F:UtilidadesGenerales.MedidasUtil.SystemCulture">
+            <summary>
+            Cultura para el procesamiento de números
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.MedidasUtil.ObtenerNumero(System.Object)">
+            <summary>
+            Trata de obtener un valor numérico desde cualquier objeto
+            </summary>
+            <param name="valor"></param>
+            <returns>número o null si no hay chance</returns>
+        </member>
+        <member name="M:UtilidadesGenerales.MedidasUtil.ObtenerMedidaUnidad(System.Object)">
+            <summary>
+            Trata de obtener un valor numérico y sus unidades si existen a partir
+            de cualquier objeto
+            </summary>
+            <param name="valor"></param>
+            <returns>Estructura o null si no hay chance</returns>
+        </member>
+        <member name="M:UtilidadesGenerales.MedidasUtil.EsNumero(System.Object)">
+            <summary>
+            Determina de forma estática si un objeto es número
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilidadesGenerales.SafeStringMap">
+            <summary>
+            Cambio de nombre para una coleccion generica de pares string o object
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.SafeStringMap.AddIf(System.String,System.Object,System.Boolean)">
+            <summary>
+            Adiciona el parámetro a la colección solo si la condición especificada es true
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.SafeStringMap.Empty(System.String)">
+            <summary>
+            Comprueba si un valor de la colección existe y no es nulo, similar al operador @ de PHP
+            que también controla cadenas vacias
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.SafeStringMap.Empty(System.String,System.String[])">
+            <summary>
+            Comprueba si todas las claves están vacias
+            </summary>
+            <param name="key"></param>
+            <param name="keys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.SafeStringMap.Get``1(System.String,``0)">
+            <summary>
+            Obtiene el valor de la colección de forma genérica y utilizando un valor por defecto también
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="defaulValue">Valor por defecto</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.SafeStringMap.Get``1(System.String)">
+            <summary>
+            Retorna un valor de forma genérica y usa el valor por defecto del tipo T
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.SafeStringMap.Get(System.String,System.Object)">
+            <summary>
+            Obtiene el valor de la colección utilizando un valor por defecto
+            </summary>
+            <param name="key"></param>
+            <param name="defaulValue">Valor por defecto</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.SafeStringMap.Get(System.String)">
+            <summary>
+            Obtiene el valor de la colección, si este no existe, retorna null
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilidadesGenerales.StringUtils">
+            <summary>
+            Serie de funciones utilitarias para trabajar con cadenas
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.StringUtils.Empty(System.Object)">
+            <summary>
+            Comprobación si una cadena está verdaderamente vacia, contando nulos y DBNull
+            </summary>
+            <param name="o"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.StringUtils.SafeString(System.Object)">
+            <summary>
+            Retorna siempre un string de un objeto aunque sea vacio, para evitar nulos
+            Kind of Null object pattern
+            </summary>
+            <param name="o"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.StringUtils.TruncarCadena(System.String,System.Int32)">
+            <summary>
+            Comprueba si la cadena de texto es superior al maximo de caracteres definidos y
+            regresa la cadena cortada de así ser el caso.
+            </summary>
+            <param name="s">Texto a verificar</param>
+            <param name="maxChars">número máximo de caracteres</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.StringUtils.RemoverAcentos(System.String)">
+            <summary>
+            Realiza una normalización de la cadena reemplazando los caracteres con acentos y otros sígnos
+            por la base común latina, es decir ä y á se convierte en a.
+            Fuente: http://csharpfeeds.com/post.aspx?id=2369
+            </summary>
+            <param name="s">Texto a normalizar</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.StringUtils.NormalizarParaDB(System.String)">
+            <summary>
+            Normaliza una cadena para su uso en la base de datos removiendo todos los acentos y reemplazando los
+            espacios por un solo caracter "_" y poniendo todo en mayúsculas.
+            </summary>
+            <param name="s">Texto a normalizar</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.StringUtils.NormalizarNumero(System.String)">
+            <summary>
+            Para efectos prácticos, el separador de decimales es el punto, si encuentra una coma, la reemplaza
+            podría extenderse en el futuro
+            </summary>
+            <param name="valor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.StringUtils.Lista(System.String,System.String,System.Boolean)">
+            <summary>
+            Devuelve una lista de cadenas a partir de un texto y dado un separador.
+            </summary>
+            <param name="texto">Texto separado</param>
+            <param name="separador">caracter o cadena de separación</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.StringUtils.ListaComas(System.String)">
+            <summary>
+            Devuelve una lista de cadenas utilizando como separador por defecto la coma ','
+            </summary>
+            <param name="texto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.StringUtils.ListaNumeros(System.String,System.Boolean)">
+            <summary>
+            Transforma una lista de numeros de cadena a una lista de enteros
+            </summary>
+            <param name="cadena"></param>
+            <param name="sinRepetidos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.StringUtils.Camelize(System.String,System.Boolean)">
+            <summary>
+            Convierte una cadena de palabras separadas por espacios o '_' en formato CamelCase.
+            Ej. son_unas_palabras = SonUnasPalabras
+            </summary>
+            <param name="input">Cadena de entrada</param>
+            <param name="excludeFirstChar">Si es verdadero, no toma en cuenta al primer caracter</param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.StringUtils.TipoTitulo(System.String)">
+            <summary>
+            Formatea una cadena donde todos las palabras tienen la primera letra en mayúscula y están
+            separadas solo por un espacio y los caracteres '_' han sido removidos
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.StringUtils.Decamelize(System.String)">
+            <summary>
+            Pone una cadena en camel-case de forma normal. Ej. NotaDeVenta -> Nota De Venta
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.StringUtils.NombreClase(System.String)">
+            <summary>
+            Extrae el nombre de la clase de una cadena con el nombre completo de un tipo de .NET
+            </summary>
+            <param name="clase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.StringUtils.FormatearElementos(System.Collections.Generic.List{System.String},System.String,System.Object[])">
+            <summary>
+            Aplica el formato definido a todos los elementos de la lista utilizando string.Format
+            y opcionalmente con otros valores pasados al método
+            </summary>
+            <param name="list"></param>
+            <param name="format"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.StringUtils.FormatearElementos(System.String,System.String,System.Object[])">
+            <summary>
+            Toma una lista separada por comas, y a cada elemento le aplica el formato definido
+            opcionalmente con los valores pasados
+            </summary>
+            <param name="list">lista separada por comas</param>
+            <param name="format">formato usado por string.Format</param>
+            <param name="values">lista de valores opcionales</param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilidadesGenerales.Check">
+             <summary>
+             Design By Contract Checks.
+             
+             Each method generates an exception or
+             a trace assertion statement if the contract is broken.
+             </summary>
+             <remarks>
+             This example shows how to call the Require method.
+             <code>
+             public void Test(int x)
+             {
+             	try
+             	{
+            			Check.Require(x > 1, "x must be > 1");
+            		}
+            		catch (System.Exception ex)
+            		{
+            			Console.WriteLine(ex.ToString());
+            		}
+            	}
+             </code>
+            
+             You can direct output to a Trace listener. For example, you could insert
+             <code>
+             Trace.Listeners.Clear();
+             Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
+             </code>
+             
+             or direct output to a file or the Event Log.
+             
+             (Note: For ASP.NET clients use the Listeners collection
+             of the Debug, not the Trace, object and, for a Release build, only exception-handling
+             is possible.)
+             </remarks>
+             
+        </member>
+        <member name="M:UtilidadesGenerales.Check.Require(System.Boolean,System.String)">
+            <summary>
+            Precondition check - should run regardless of preprocessor directives.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.Check.Require(System.Boolean,System.String,System.Exception)">
+            <summary>
+            Precondition check - should run regardless of preprocessor directives.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.Check.Require(System.Boolean)">
+            <summary>
+            Precondition check - should run regardless of preprocessor directives.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.Check.Ensure(System.Boolean,System.String)">
+            <summary>
+            Postcondition check.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.Check.Ensure(System.Boolean,System.String,System.Exception)">
+            <summary>
+            Postcondition check.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.Check.Ensure(System.Boolean)">
+            <summary>
+            Postcondition check.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.Check.Invariant(System.Boolean,System.String)">
+            <summary>
+            Invariant check.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.Check.Invariant(System.Boolean,System.String,System.Exception)">
+            <summary>
+            Invariant check.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.Check.Invariant(System.Boolean)">
+            <summary>
+            Invariant check.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.Check.Assert(System.Boolean,System.String)">
+            <summary>
+            Assertion check.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.Check.Assert(System.Boolean,System.String,System.Exception)">
+            <summary>
+            Assertion check.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.Check.Assert(System.Boolean)">
+            <summary>
+            Assertion check.
+            </summary>
+        </member>
+        <member name="P:UtilidadesGenerales.Check.UseAssertions">
+            <summary>
+            Set this if you wish to use Trace Assert statements 
+            instead of exception handling. 
+            (The Check class uses exception handling by default.)
+            </summary>
+        </member>
+        <member name="P:UtilidadesGenerales.Check.UseExceptions">
+            <summary>
+            Is exception handling being used?
+            </summary>
+        </member>
+        <member name="T:UtilidadesGenerales.DesignByContractException">
+            <summary>
+            Exception raised when a contract is broken.
+            Catch this exception type if you wish to differentiate between 
+            any DesignByContract exception and other runtime exceptions.
+             
+            </summary>
+        </member>
+        <member name="T:UtilidadesGenerales.PreconditionException">
+            <summary>
+            Exception raised when a precondition fails.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.PreconditionException.#ctor">
+            <summary>
+            Precondition Exception.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.PreconditionException.#ctor(System.String)">
+            <summary>
+            Precondition Exception.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.PreconditionException.#ctor(System.String,System.Exception)">
+            <summary>
+            Precondition Exception.
+            </summary>
+        </member>
+        <member name="T:UtilidadesGenerales.PostconditionException">
+            <summary>
+            Exception raised when a postcondition fails.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.PostconditionException.#ctor">
+            <summary>
+            Postcondition Exception.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.PostconditionException.#ctor(System.String)">
+            <summary>
+            Postcondition Exception.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.PostconditionException.#ctor(System.String,System.Exception)">
+            <summary>
+            Postcondition Exception.
+            </summary>
+        </member>
+        <member name="T:UtilidadesGenerales.InvariantException">
+            <summary>
+            Exception raised when an invariant fails.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.InvariantException.#ctor">
+            <summary>
+            Invariant Exception.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.InvariantException.#ctor(System.String)">
+            <summary>
+            Invariant Exception.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.InvariantException.#ctor(System.String,System.Exception)">
+            <summary>
+            Invariant Exception.
+            </summary>
+        </member>
+        <member name="T:UtilidadesGenerales.AssertionException">
+            <summary>
+            Exception raised when an assertion fails.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.AssertionException.#ctor">
+            <summary>
+            Assertion Exception.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.AssertionException.#ctor(System.String)">
+            <summary>
+            Assertion Exception.
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.AssertionException.#ctor(System.String,System.Exception)">
+            <summary>
+            Assertion Exception.
+            </summary>
+        </member>
+        <member name="T:UtilidadesGenerales.HashtableDynamicObject">
+            <summary>
+            Se puede utilizar como objeto de tipo "dynamic" pero que usa un hashtable para
+            los nombres de las propiedades, de lujo. Gracias a ayende.
+            Brutal para utilizar como campos dinámicos (de atributos) de una clase persistente,
+            por ejemplo los atributos de un usuario, cliente, etc. en una base relacional
+            cuando no se puede usar algo más avanzado...
+            Fuente: http://ayende.com/Blog/archive/2011/03/08/support-dynamic-fields-with-nhibernate-and-.net-4.0.aspx
+            </summary>
+        </member>
+        <member name="T:UtilidadesGenerales.ValidacionesTexto">
+            <summary>
+            Funciones de validación de formato de cadenas usando expresiones regulares
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.ValidacionesTexto.EsEmailValido(System.String)">
+            <summary>
+            Verifica si un texto tiene el formato de email utilizando expresiones regulares
+            </summary>
+            <param name="inputEmail"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.ValidacionesTexto.EsNumeroNatural(System.String)">
+            <summary>
+            Comprueba que sea numero Entero Positivo
+            </summary>
+            <param name="strNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.ValidacionesTexto.EsEnteroPositivoCero(System.String)">
+            <summary>
+            Comprueba que sea numero positivo entero con 0 incluido
+            </summary>
+            <param name="strNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.ValidacionesTexto.EsEntero(System.String)">
+            <summary>
+            Comprueba que sea Entero Positivo o Negativo
+            </summary>
+            <param name="strNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.ValidacionesTexto.EsPositivo(System.String)">
+            <summary>
+            Comprueba que sea Número positivo Entero o Real
+            </summary>
+            <param name="strNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.ValidacionesTexto.EsNumero(System.String)">
+            <summary>
+            Comprueba que sea número válido
+            </summary>
+            <param name="strNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.ValidacionesTexto.EsAlfabetico(System.String)">
+            <summary>
+            Comprueba que sea Alfabetico
+            </summary>
+            <param name="strToCheck"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UtilidadesGenerales.ValidacionesTexto.EsAlfanumerico(System.String)">
+            <summary>
+            Comprueba que sea alfanumérico
+            </summary>
+            <param name="strToCheck"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UtilidadesGenerales.DateUtils">
+            <summary>
+            Clase utilitaria para el formateo de fechas utilizando la cultura general de Ecuador y el formato ISO
+            </summary>
+        </member>
+        <member name="M:UtilidadesGenerales.DateUtils.IsoDate(System.Nullable{System.DateTime})">
+            <summary>
+            Retorna una cadena de fecha en formato ISO estándar yyyy-MM-dd
+            </summary>
+            <param name="date">Fecha o null</param>
+            <returns>Cadena vacia si la fecha es null</returns>
+        </member>
+        <member name="M:UtilidadesGenerales.DateUtils.IsoDateTime(System.Nullable{System.DateTime})">
+            <summary>
+            Retorna una cadena de fecha hora en formato ISO estándar 'yyyy-MM-dd HH:mm'
+            No incluye segundos
+            </summary>
+            <param name="date">Fecha o null</param>
+            <returns>Cadena vacia si la fecha es null</returns>
+        </member>
+        <member name="M:UtilidadesGenerales.DateUtils.ObtenerFecha(System.String)">
+            <summary>
+            Obtiene una fecha probando todos los formatos de esta clase, si no tiene exito retorna null
+            </summary>
+            <param name="fecha"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

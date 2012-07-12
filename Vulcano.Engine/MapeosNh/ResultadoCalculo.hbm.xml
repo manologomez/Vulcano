@@ -1,0 +1,43 @@
+﻿<?xml version="1.0"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Vulcano.Engine"
+		namespace="Vulcano.Engine.Dominio" >
+
+	<class name ="Resultado" table="resultado">
+		<id name="Id">
+			<generator class="guid.comb" />
+		</id>
+
+		<property name="Id_ciudad" />
+		<property name="Tipo_item" />
+		<property name="Id_item" />
+		<property name="Canton" />
+		<property name="Proceso" />
+		<property name="Nombre" />
+		<property name="Codigo" />
+		<property name="Codigo2" />
+		<property name="Codigo3" />
+		<property name="Indice" />
+		<property name="Informacion" />
+		<property name="Completo" />
+		<property name="Numevaluados" />
+		<property name="Numcomponentes" />
+
+		<property name="Indicador1"/>
+		<property name="Indicador2"/>
+		<property name="Indicador3"/>
+		<property name="Indicador4"/>
+		<property name="Indicador5"/>
+		<property name="Indicador6"/>
+
+		<property name="Fecha"/>
+		<property name="Serializado"/>
+		<property name="Area"/>
+
+		<bag name="Detalles" cascade="all" lazy="true" >
+			<key column ="id_padre"/>
+			<one-to-many class ="Detalle_res"/>
+		</bag>
+
+	</class>
+
+</hibernate-mapping>
